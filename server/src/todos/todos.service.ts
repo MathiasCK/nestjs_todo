@@ -62,4 +62,14 @@ export class TodosService {
       throw new InternalServerErrorException();
     }
   }
+
+  async deleteTodo(id: string): Promise<void> {
+    const key = `todos:${id}`;
+
+    try {
+      await this.redisClient.send_command('JSON.DEL', key, '.');
+    } catch (e) {
+      throw e;
+    }
+  }
 }
