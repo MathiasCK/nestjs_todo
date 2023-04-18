@@ -21,6 +21,7 @@ export class TodosController {
     return this.todosService.getTodos();
   }
 
+  @HttpCode(200)
   @Get(':id')
   async getTodo(@Param('id') id): Promise<TodoDto> {
     return this.todosService.getTodo(id);

@@ -50,11 +50,14 @@ export class TodosService {
   async getTodo(id: string): Promise<TodoDto> {
     const key = `todos:${id}`;
 
+    this.logger.debug(`Attempting to get todo with id ${id}`);
+
     try {
       const todo = await this.redisClient.send_command('JSON.GET', key, '.');
       return JSON.parse(todo);
     } catch (e) {
-      throw e;
+      this.logger.error(`Failed to get todo ${key}`);
+      throw new NotFoundException(e.message);
     }
   }
 
