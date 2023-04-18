@@ -1,0 +1,76 @@
+.todo,
+.todo__finished {
+  background: #f7f7f7;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  margin: 1rem;
+  padding: 1rem;
+}
+@media screen and (min-width: 400px) {
+  .todo,
+  .todo__finished {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .todo,
+  .todo__finished {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .todo,
+  .todo__finished {
+    width: 50%;
+  }
+}
+.todo .todo__content,
+.todo__finished .todo__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.todo .todo__content--paragraph,
+.todo__finished .todo__content--paragraph {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 100;
+}
+.todo .todo__content__button--mark,
+.todo__finished .todo__content__button--mark {
+  border: 1px solid #a0e7a0;
+  color: #a0e7a0;
+}
+.todo .todo__content__button--mark:hover,
+.todo__finished .todo__content__button--mark:hover {
+  background: #a0e7a0;
+  color: white;
+}
+.todo .todo__content__button--delete,
+.todo__finished .todo__content__button--delete {
+  border: 1px solid #ff5148;
+  color: #ff5148;
+}
+.todo .todo__content__button--delete:hover,
+.todo__finished .todo__content__button--delete:hover {
+  background: #ff5148;
+  color: white;
+}
+.todo__empty {
+  margin: 1rem;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 100;
+  font-size: 1rem;
+}
+.todo__finished {
+  background: #d1d1d1;
+  color: rgba(0, 0, 0, 0.6);
+  order: 1;
+}
+.todo__finished p {
+  text-decoration: line-through;
+}
+.todo__update {
+  display: flex;
+  padding: 1rem;
+}

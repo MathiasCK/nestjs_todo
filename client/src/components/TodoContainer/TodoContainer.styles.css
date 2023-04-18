@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;400&family=Lobster&display=swap');
+.todolist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+}
+@media screen and (min-width: 400px) {
+  .todolist {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .todolist {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .todolist {
+    width: 50%;
+  }
+}
+.todolist .todolist__header {
+  color: #7da2a9;
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  margin: 1rem 0;
+}
+.todoList__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

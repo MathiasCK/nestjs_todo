@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;400&family=Lobster&display=swap');
+
+$transition: 0.3s all ease-in-out;
+$header: 'Lobster', cursive;
+$paragraph: 'Chivo', sans-serif;
+$blue: #7da2a9;
+$green: #a0e7a0;
+
+$mobile: 400px;
+$tablet: 768px;
+$desktop: 1024px;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f7f7;
+}
+
+button {
+  font-family: $paragraph;
+  font-weight: 100;
+  max-height: 3vh;
+  cursor: pointer;
+  border: none;
+  padding: 0.25rem;
+  margin: 0 0.5rem;
+  border: 1px solid $blue;
+  color: $blue;
+  background: transparent;
+  transition: $transition;
+  &:hover {
+    background: $blue;
+    color: white;
+  }
+}
+
+input,
+label {
+  font-family: $paragraph;
+  font-weight: 100;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
