@@ -19,16 +19,6 @@ export class TodosController {
     return this.todosService.getTodos();
   }
 
-  @Get('uncompleted')
-  async getUncompleted(): Promise<TodoDto[]> {
-    return this.todosService.filterTodos(false);
-  }
-
-  @Get('completed')
-  async getCompleted(): Promise<TodoDto[]> {
-    return this.todosService.filterTodos(true);
-  }
-
   @Get(':id')
   async getTodo(@Param('id') id): Promise<TodoDto> {
     return this.todosService.getTodo(id);

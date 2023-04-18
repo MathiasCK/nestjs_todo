@@ -5,6 +5,7 @@ import TodoAdder from '../TodoAdder';
 import './TodoContainer.styles.css';
 
 const TodoContainer = () => {
+  const [initialTodos, setInitialTodos] = useState([]);
   const [todos, setTodos] = useState([]);
 
   const getTodos = async () => {
@@ -18,6 +19,7 @@ const TodoContainer = () => {
     if (response.ok) {
       const data = await response.json();
       setTodos(data);
+      setInitialTodos(data);
     }
   };
 
@@ -27,7 +29,7 @@ const TodoContainer = () => {
     fetchData();
   }, []);
 
-  if (!todos.length) {
+  if (!todos.length && !initialTodos.length) {
     return (
       <header className="todolist">
         <h1 className="todolist__header">What's happening today?</h1>
@@ -42,7 +44,11 @@ const TodoContainer = () => {
       <header className="todolist">
         <h1 className="todolist__header">What's happening today?</h1>
         <TodoAdder getTodos={getTodos} />
-        <FilterButtons todos={todos} setTodos={setTodos} />
+        <FilterButtons
+          todos={todos}
+          setTodos={setTodos}
+          initialTodos={initialTodos}
+        />
       </header>
       <section className="todoList__container">
         {todos.map(todo => (
