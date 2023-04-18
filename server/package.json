@@ -65,5 +65,10 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/../src/$1",
+    "^@todos/(.*)$": "<rootDir>/../src/todos/$1",
+    "^@todos(.*)$": "<rootDir>/../src/todos/index"
   }
 }
