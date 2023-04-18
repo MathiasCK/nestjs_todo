@@ -7,7 +7,7 @@ export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Get()
-  async getTodos() {
+  async getTodos(): Promise<TodoDto[]> {
     return this.todosService.getTodos();
   }
 
