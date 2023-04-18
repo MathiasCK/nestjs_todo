@@ -51,6 +51,7 @@ export class TodosController {
     return this.todosService.deleteAll();
   }
 
+  @HttpCode(201)
   @Delete(':id')
   async deleteTodo(@Param('id') id): Promise<void> {
     return this.todosService.deleteTodo(id);

@@ -91,10 +91,13 @@ export class TodosService {
   async deleteTodo(id: string): Promise<void> {
     const key = `todos:${id}`;
 
+    this.logger.debug(`Attempting to delete todo with id ${id}`);
+
     try {
       await this.redisClient.send_command('JSON.DEL', key, '.');
     } catch (e) {
-      throw e;
+      this.logger.error(`Failed to delete todo ${key}`);
+      throw new NotFoundException(e.message);
     }
   }
 }
