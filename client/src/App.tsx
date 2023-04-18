@@ -1,5 +1,5 @@
-import { TodoContainer } from './components';
-import './App.scss';
+import {TodoContainer} from './components';
+import './App.css';
 
 const App = () => <TodoContainer />;
 
