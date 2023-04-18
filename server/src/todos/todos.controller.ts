@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { TodosService } from '@todos/todos.service';
-import { TodoDto } from './todo.dto';
+import { TodoDto } from '@todos';
 
 @Controller('api/todos')
 export class TodosController {
@@ -17,6 +17,16 @@ export class TodosController {
   @Get()
   async getTodos(): Promise<TodoDto[]> {
     return this.todosService.getTodos();
+  }
+
+  @Get('uncompleted')
+  async getUncompleted(): Promise<TodoDto[]> {
+    return this.todosService.filterTodos(false);
+  }
+
+  @Get('completed')
+  async getCompleted(): Promise<TodoDto[]> {
+    return this.todosService.filterTodos(true);
   }
 
   @Get(':id')

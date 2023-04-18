@@ -72,4 +72,9 @@ export class TodosService {
       throw e;
     }
   }
+
+  async filterTodos(filter: boolean): Promise<TodoDto[]> {
+    const todos = this.getTodos();
+    return (await todos).filter((todo) => todo.isComplete === filter);
+  }
 }
