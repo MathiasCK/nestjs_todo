@@ -54,4 +54,12 @@ export class TodosService {
       throw new InternalServerErrorException();
     }
   }
+
+  async deleteAll(): Promise<void> {
+    try {
+      await this.redisClient.flushdb();
+    } catch (e) {
+      throw new InternalServerErrorException();
+    }
+  }
 }
