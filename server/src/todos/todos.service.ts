@@ -1,10 +1,12 @@
 import {
+  ConflictException,
   HttpException,
   HttpStatus,
   Inject,
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import { IO_REDIS_KEY } from '@/redis.module';
 import { Redis } from 'ioredis';
@@ -17,23 +19,32 @@ export class TodosService {
   constructor(@Inject(IO_REDIS_KEY) private readonly redisClient: Redis) {}
 
   async getTodos(): Promise<TodoDto[]> {
-    const keys = await this.redisClient.keys('*');
+    try {
+      const keys = await this.redisClient.keys('*');
 
-    if (!keys || keys.length === 0) {
-      return [];
-    }
-
-    const todos: TodoDto[] = [];
-    for (const key of keys) {
-      try {
-        const todo = await this.redisClient.send_command('JSON.GET', key, '.');
-        todos.push(JSON.parse(todo));
-      } catch (e) {
-        throw new Error(`Failed to get todo with key ${key}`);
+      if (!keys || keys.length === 0) {
+        return [];
       }
-    }
 
-    return todos;
+      const todos: TodoDto[] = [];
+      for (const key of keys) {
+        try {
+          const todo = await this.redisClient.send_command(
+            'JSON.GET',
+            key,
+            '.',
+          );
+          todos.push(JSON.parse(todo));
+        } catch (e) {
+          this.logger.error(`Failed to get todo with key ${key}`);
+          throw new NotFoundException(e.message);
+        }
+      }
+
+      return todos;
+    } catch (e) {
+      throw new InternalServerErrorException();
+    }
   }
 
   async getTodo(id: string): Promise<TodoDto> {

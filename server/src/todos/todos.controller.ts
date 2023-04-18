@@ -15,6 +15,7 @@ import { TodoDto } from '@todos';
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
+  @HttpCode(200)
   @Get()
   async getTodos(): Promise<TodoDto[]> {
     return this.todosService.getTodos();
