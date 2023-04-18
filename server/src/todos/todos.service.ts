@@ -31,6 +31,17 @@ export class TodosService {
     return todos;
   }
 
+  async getTodo(id: string): Promise<TodoDto> {
+    const key = `todos:${id}`;
+
+    try {
+      const todo = await this.redisClient.send_command('JSON.GET', key, '.');
+      return JSON.parse(todo);
+    } catch (e) {
+      throw e;
+    }
+  }
+
   async createTodo(todo: TodoDto): Promise<TodoDto> {
     const key = `todos:${todo.id}`;
 
