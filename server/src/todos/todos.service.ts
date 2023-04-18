@@ -80,10 +80,11 @@ export class TodosService {
   }
 
   async deleteAll(): Promise<void> {
+    this.logger.debug(`Attempting delete all todos`);
     try {
       await this.redisClient.flushdb();
     } catch (e) {
-      throw new InternalServerErrorException();
+      throw new InternalServerErrorException(e.message);
     }
   }
 

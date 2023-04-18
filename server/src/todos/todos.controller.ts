@@ -45,6 +45,7 @@ export class TodosController {
     }
   }
 
+  @HttpCode(201)
   @Delete()
   async deleteAll() {
     return this.todosService.deleteAll();
