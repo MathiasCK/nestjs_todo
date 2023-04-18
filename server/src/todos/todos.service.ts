@@ -11,7 +11,7 @@ import { TodoDto } from '@todos';
 export class TodosService {
   constructor(@Inject(IO_REDIS_KEY) private readonly redisClient: Redis) {}
 
-  async getTodos() {
+  async getTodos(): Promise<TodoDto[]> {
     const keys = await this.redisClient.keys('*');
 
     if (!keys || keys.length === 0) {
