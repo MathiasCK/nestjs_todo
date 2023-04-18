@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Post,
   Put,
@@ -24,6 +25,7 @@ export class TodosController {
     return this.todosService.getTodo(id);
   }
 
+  @HttpCode(201)
   @Post()
   async createTodo(@Body() todo: TodoDto): Promise<TodoDto> {
     return this.todosService.createTodo(todo);
