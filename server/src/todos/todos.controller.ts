@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  NotFoundException,
   Param,
   Post,
   Put,
@@ -33,6 +34,7 @@ export class TodosController {
     return this.todosService.createTodo(todo);
   }
 
+  @HttpCode(200)
   @Put(':id')
   async markTodo(@Param('id') id): Promise<TodoDto> {
     const todo = await this.getTodo(id);
